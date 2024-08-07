@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Room Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .header {
+            background-color: #354c6e;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .header .menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        .header .menu a:hover {
+            background-color: #fff;
+            color: #354c6e;
+            border-radius: 5px;
+        }
+
+        .container {
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        input[type="submit"] {
+            background-color: #354c6e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #293c5a;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <a href="" class="logo">Desinging</a>
+            <div class="menu">
+                <a href="home1.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="explore.html">Explore</a>
+                <a href="gallery.html">References</a>
+                <a href="#contact.html">Contact</a>
+                
+            </div>
+        </div>
+        
+       
+    </header>
+    
+
+    <div class="container">
+        <div class="contact-form">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <p>Contact Information:</p>
+            <p>Email: info@roommanagementsystem.com</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Address: 123 Main Street, City, Country</p>
+        </div>
+    </div>
+</body>
+</html>

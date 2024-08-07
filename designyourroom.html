@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Room Design</title>
+    <style>
+        .header {
+            background-color: #4513b7;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .header .menu {
+            display: flex;
+            gap: 35px;
+        }
+
+        .header .menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        .header .menu a:hover {
+            background-color: #fff;
+            color: #354c6e;
+            border-radius: 5px;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .room {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('emptyroom.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .object {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            cursor: pointer;
+            background-size: cover;
+        }
+
+        .object#chair {
+            background-image: url('chair.jpeg');
+            top: 300px;
+            left: 100px;
+        }
+
+        .object#table {
+            background-image: url('table.jpeg');
+            top: 350px;
+            left: 250px;
+        }
+
+        .object#plant {
+            background-image: url('plant.jpg');
+            top: 200px;
+            left: 400px;
+        }
+
+        .object#lamp {
+            background-image: url('lamp.jpeg');
+            top: 150px;
+            left: 50px;
+        }
+
+        .button-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .screenshot-button {
+            background-color: #28a745;
+        }
+
+        .screenshot-button:hover {
+            background-color: #218838;
+        }
+        .object {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    cursor: pointer;
+    background-size: cover;
+    overflow: hidden;
+    min-width: 50px; /* Minimum width */
+    min-height: 50px; /* Minimum height */
+}
+
+.resize-handle {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    position: absolute;
+    border: 1px solid #000;
+}
+
+.resize-handle.top-left { top: -5px; left: -5px; cursor: nwse-resize; }
+.resize-handle.top-right { top: -5px; right: -5px; cursor: nesw-resize; }
+.resize-handle.bottom-left { bottom: -5px; left: -5px; cursor: nesw-resize; }
+.resize-handle.bottom-right { bottom: -5px; right: -5px; cursor: nwse-resize; }
+.resize-handle.top { top: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+.resize-handle.bottom { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+.resize-handle.left { left: -5px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
+.resize-handle.right { right: -5px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
+
+
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<header>
+    <div class="header">
+        <a href="" class="logo">Designing</a>
+        <div class="menu">
+            <a href="home1.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="explore.html">Explore</a>
+            <a href="gallery.html">References</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+</header><body>
+    <div class="room">
+        <div class="object" id="chair" draggable="true"></div>
+        <div class="object" id="table" draggable="true"></div>
+        <div class="object" id="plant" draggable="true"></div>
+        <div class="object" id="lamp" draggable="true"></div>
+        <div class="button-container">
+            <button class="button" id="add-object-button">Add Object</button>
+            <button class="button" id="add-background-button">Change Background</button>
+            <button class="button" id="saveButton">Save Screenshot</button>
+            <button class="button" id="open-screenshot-button">Open Screenshots</button>
+        </div>
+    </div>
+
+    <input type="file" id="object-input" accept="image/*" multiple>
+    <input type="file" id="background-input" accept="image/*">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.11/interact.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        let activeItem = null;
+        let activeX = 0;
+        let activeY = 0;
+
+        document.querySelectorAll(".object").forEach(item => {
+            item.addEventListener("mousedown", (e) => {
+                activeItem = item;
+                activeX = e.clientX - item.getBoundingClientRect().left;
+                activeY = e.clientY - item.getBoundingClientRect().top;
+            });
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (activeItem) {
+                activeItem.style.left = e.clientX - activeX + "px";
+                activeItem.style.top = e.clientY - activeY + "px";
+            }
+        });
+
+        document.addEventListener("mouseup", () => {
+            activeItem = null;
+        });
+
+        document.getElementById('add-object-button').addEventListener('click', () => {
+            document.getElementById('object-input').click();
+        });
+
+        document.getElementById('object-input').addEventListener('change', function() {
+            const files = this.files;
+            for (const file of files) {
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const newObject = document.createElement('div');
+                        newObject.classList.add('object');
+                        newObject.style.backgroundImage = `url(${e.target.result})`;
+                        newObject.style.top = '50px';
+                        newObject.style.left = '50px';
+                        newObject.draggable = true;
+
+                        newObject.addEventListener("mousedown", (e) => {
+                            activeItem = newObject;
+                            activeX = e.clientX - newObject.getBoundingClientRect().left;
+                            activeY = e.clientY - newObject.getBoundingClientRect().top;
+                        });
+
+                        document.querySelector('.room').appendChild(newObject);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        document.getElementById('add-background-button').addEventListener('click', () => {
+            document.getElementById('background-input').click();
+        });
+
+        document.getElementById('background-input').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector('.room').style.backgroundImage = `url(${e.target.result})`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('saveButton').addEventListener('click', function() {
+            html2canvas(document.querySelector('.room')).then(function(canvas) {
+                canvas.toBlob(function(blob) {
+                    var link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'screenshot.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            });
+        });
+
+        document.getElementById('open-screenshot-button').addEventListener('click', function() {
+            const screenshots = JSON.parse(localStorage.getItem('screenshots') || '[]');
+            if (screenshots.length > 0) {
+                screenshots.forEach((url) => {
+                    window.open(url);
+                });
+            } else {
+                alert('No screenshots available. Please save a screenshot first.');
+            }
+        });
+
+        interact('.object').draggable({
+            onmove: dragMoveListener
+        }).resizable({
+            edges: { left: true, right: true, bottom: true, top: true },
+            modifiers: [
+                interact.modifiers.restrictEdges({
+                    outer: 'parent'
+                }),
+                interact.modifiers.restrictSize({
+                    min: { width: 50, height: 50 } // Prevent resizing below these dimensions
+                })
+            ]
+        }).on('resizemove', function (event) {
+            let { x, y } = event.target.dataset;
+
+            x = (parseFloat(x) || 0) + event.deltaRect.left;
+            y = (parseFloat(y) || 0) + event.deltaRect.top;
+
+            Object.assign(event.target.style, {
+                width: `${event.rect.width}px`,
+                height: `${event.rect.height}px`,
+                transform: `translate(${x}px, ${y}px)`
+            });
+
+            Object.assign(event.target.dataset, { x, y });
+        });
+
+        function dragMoveListener(event) {
+            var target = event.target;
+            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+    </script>
+</body>
+</html> 

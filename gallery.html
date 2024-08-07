@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Management System Gallery</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+    }
+    
+    .header {
+        background-color: #093577;
+        padding: 10px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header .logo {
+        color: #fff;
+        text-decoration: none;
+        font-size: 24px;
+    }
+    
+    .header .menu {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .header .menu a {
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+    
+    .header .menu a:hover {
+        background-color: #fff;
+        color: #0f3163;
+        border-radius: 5px;
+    }
+    
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+        gap: 20px;
+        padding: 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+    
+    .image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .image img {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+        display: block;
+    }
+    
+    .image:hover {
+        transform: scale(1.03);
+    }
+    
+    .caption {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 5px;
+        text-align: center;
+        font-size: 14px; /* Reduced font size */
+        margin-bottom: 5px; /* Space between title and button */
+    }
+    
+    .view-button {
+        background-color: #0b4192;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 12px; /* Reduced font size */
+        transition: background-color 0.3s;
+    }
+    
+    .view-button:hover {
+        background-color: #2a3b5c;
+    }
+    /* Add this to your existing CSS */
+.fullscreen-img {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain; /* Ensure the aspect ratio is maintained */
+}
+
+    
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <a href="" class="logo">Desinging</a>
+            <div class="menu">
+                <a href="home1.html">Home</a>
+                <a href="About.html">About</a>
+                <a href="explore.html">Explore</a>
+                <a href="gallery.html">References</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="gallery">
+        <div class="image">
+            <img src="room1.jpeg" alt="Meeting Room 1">
+            <div class="caption">Meeting Room 1</div>
+            <a href="room1.jpeg" target="_blank" class="view-button">View Full Image</a>
+        </div>
+
+        <div class="image">
+            <img src="room2.jpeg" alt="Living Room 1">
+            <div class="caption">Living Room 1</div>
+            <a href="room2.jpeg" target="_blank" class="view-button">View Full Image</a>
+        </div>
+
+        <div class="image">
+            <img src="room3.jpeg" alt="Living Room 2">
+            <div class="caption">Living Room 2</div>
+            <a href="room3.jpeg" target="_blank" class="view-button">View Full Image</a>
+        </div>
+
+        <div class="image">
+            <img src="room4.jpeg" alt="Low Space Room 2">
+            <div class="caption">Low Space Room 2</div>
+            <a href="room4.jpeg" target="_blank" class="view-button">View Full Image</a>
+        </div>
+
+        <div class="image">
+            <img src="room5.jpeg" alt="Conference Room">
+            <div class="caption">Conference Room</div>
+            <a href="room5.jpeg" target="_blank" class="view-button">View Full Image</a>
+        </div>
+
+        <div class="image">
+            <img src="room6.jpeg" alt="Conference Room 2">
+            <div class="caption">Conference Room 2</div>
+            <a href="room6.jpeg" target="_blank" class="view-button">View Full Image</a>
+        </div>
+        <!-- Add more images and captions as needed -->
+    </div>
+</body>
+</html>
