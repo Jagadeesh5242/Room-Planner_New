@@ -112,34 +112,34 @@
         .screenshot-button:hover {
             background-color: #218838;
         }
+
         .object {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    cursor: pointer;
-    background-size: cover;
-    overflow: hidden;
-    min-width: 50px; /* Minimum width */
-    min-height: 50px; /* Minimum height */
-}
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            cursor: pointer;
+            background-size: cover;
+            overflow: hidden;
+            min-width: 50px;
+            min-height: 50px;
+        }
 
-.resize-handle {
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    position: absolute;
-    border: 1px solid #000;
-}
+        .resize-handle {
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            position: absolute;
+            border: 1px solid #000;
+        }
 
-.resize-handle.top-left { top: -5px; left: -5px; cursor: nwse-resize; }
-.resize-handle.top-right { top: -5px; right: -5px; cursor: nesw-resize; }
-.resize-handle.bottom-left { bottom: -5px; left: -5px; cursor: nesw-resize; }
-.resize-handle.bottom-right { bottom: -5px; right: -5px; cursor: nwse-resize; }
-.resize-handle.top { top: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
-.resize-handle.bottom { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
-.resize-handle.left { left: -5px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
-.resize-handle.right { right: -5px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
-
+        .resize-handle.top-left { top: -5px; left: -5px; cursor: nwse-resize; }
+        .resize-handle.top-right { top: -5px; right: -5px; cursor: nesw-resize; }
+        .resize-handle.bottom-left { bottom: -5px; left: -5px; cursor: nesw-resize; }
+        .resize-handle.bottom-right { bottom: -5px; right: -5px; cursor: nwse-resize; }
+        .resize-handle.top { top: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+        .resize-handle.bottom { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+        .resize-handle.left { left: -5px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
+        .resize-handle.right { right: -5px; top: 50%; transform: translateY(-50%); cursor: ew-resize; }
 
         input[type="file"] {
             display: none;
@@ -157,7 +157,8 @@
             <a href="contact.html">Contact</a>
         </div>
     </div>
-</header><body>
+</header>
+<body>
     <div class="room">
         <div class="object" id="chair" draggable="true"></div>
         <div class="object" id="table" draggable="true"></div>
@@ -255,6 +256,15 @@
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
+
+                    // Save the screenshot URL to localStorage
+                    const reader = new FileReader();
+                    reader.onload = function() {
+                        const screenshots = JSON.parse(localStorage.getItem('screenshots') || '[]');
+                        screenshots.push(reader.result);
+                        localStorage.setItem('screenshots', JSON.stringify(screenshots));
+                    }
+                    reader.readAsDataURL(blob);
                 });
             });
         });
@@ -309,4 +319,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
