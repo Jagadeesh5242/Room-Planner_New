@@ -273,7 +273,8 @@
             const screenshots = JSON.parse(localStorage.getItem('screenshots') || '[]');
             if (screenshots.length > 0) {
                 screenshots.forEach((url) => {
-                    window.open(url);
+                    const newWindow = window.open();
+                    newWindow.document.write('<img src="' + url + '" />');
                 });
             } else {
                 alert('No screenshots available. Please save a screenshot first.');
